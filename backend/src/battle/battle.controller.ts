@@ -1,62 +1,50 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { BattleService } from './battle.service';
-import { Battle } from './battle.entity';
+import { BattleDto } from './dto/battle.dto';
 import { Pokemon } from '../pokemon/pokemon.entity';
-
-interface BattleRequest {
-  pokemon1: Pokemon;
-  pokemon2: Pokemon;
-}
 
 @Controller('battle')
 export class BattleController {
   constructor(private readonly battleService: BattleService) {}
 
-  @Get()
-  async getAllBattles(): Promise<string> {
-    return 'todas las batallas';
-  }
-
-  @Post('battle')
-  async battle(@Body() data: BattleRequest): Promise<Battle> {
-    //TODO: Agregar trycatch
-    const { pokemon1, pokemon2 } = data;
+  @Post()
+  async battle(@Body() pokemons: BattleDto): Promise<Pokemon> {
+    const { pokemonSelected, pokemonRival } = pokemons;
 
     // Calculamos el orden de ataque basado en velocidad
     let attacker, defender;
     if (
-      pokemon1.speed > pokemon2.speed ||
-      (pokemon1.speed === pokemon2.speed && pokemon1.attack > pokemon2.attack)
+      pokemonSelected.speed > pokemonRival.speed ||
+      (pokemonSelected.speed === pokemonRival.speed &&
+        pokemonSelected.attack > pokemonRival.attack)
     ) {
-      attacker = pokemon1;
-      defender = pokemon2;
+      attacker = pokemonSelected;
+      defender = pokemonRival;
     } else {
-      attacker = pokemon2;
-      defender = pokemon1;
+      attacker = pokemonRival;
+      defender = pokemonSelected;
     }
 
     // Calculamos el daño
     const damage1 = Math.max(attacker.attack - defender.defense, 1);
     const damage2 = Math.max(defender.attack - attacker.defense, 1);
 
-    // Simulamos la batalla
-    while (pokemon1.hp > 0 && pokemon2.hp > 0) {
+    // Simulamos la batalla por turnos
+    while (pokemonSelected.hp > 0 && pokemonRival.hp > 0) {
       defender.hp -= damage1;
-      console.log(
-        `${attacker.name} attack ${defender.name} - damage: ${damage1} - defender hp: ${defender.hp}`,
-      );
       if (defender.hp <= 0) break;
       attacker.hp -= damage2;
-      console.log(
-        `${defender.name} attack ${attacker.name} - damage: ${damage2} - attacker hp: ${attacker.hp}`,
-      );
     }
 
     // Determinamos el ganador
-    const winnerId = pokemon1.hp > 0 ? pokemon1.id : pokemon2.id;
-    const loserId = pokemon1.hp > 0 ? pokemon2.id : pokemon1.id;
+    const winnerPokemon =
+      pokemonSelected.hp > 0 ? pokemonSelected : pokemonRival;
+    const loserPokemon =
+      pokemonSelected.hp > 0 ? pokemonRival : pokemonSelected;
 
-    // Guardamos el resultado de la batalla en la base de datos
-    return this.battleService.create(winnerId, loserId);
+    // Guardamos el resultado en la base de datos
+    await this.battleService.create(winnerPokemon.id, loserPokemon.id);
+
+    return winnerPokemon;
   }
 }
