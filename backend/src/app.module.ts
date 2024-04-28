@@ -1,13 +1,12 @@
-import { DataSource } from 'typeorm';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PokemonModule } from './pokemon/pokemon.module';
-import { Pokemon } from './pokemon/pokemon.entity';
 import { TypeOrmModule } from './datasource/typeorm.module';
+import { BattleModule } from './battle/battle.module';
 
 @Module({
-  imports: [PokemonModule, TypeOrmModule],
+  imports: [TypeOrmModule, PokemonModule, BattleModule],
   controllers: [AppController],
   providers: [AppService],
 })

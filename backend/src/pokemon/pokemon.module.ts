@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { PokemonService } from './pokemon.service';
 import { PokemonController } from './pokemon.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Pokemon } from './pokemon.entity';
 
 @Module({
