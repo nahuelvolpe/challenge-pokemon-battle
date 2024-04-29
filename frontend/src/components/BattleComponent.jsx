@@ -1,8 +1,11 @@
-import React from "react";
 import { Grid, Button } from "@mui/material";
 import { CardPokemon } from "./CardPokemon";
 
-export const BattleComponent = ({ selectedPokemon, rivalPokemon }) => {
+export const BattleComponent = ({
+  selectedPokemon,
+  rivalPokemon,
+  battleHandle,
+}) => {
   return (
     <Grid
       container
@@ -16,7 +19,7 @@ export const BattleComponent = ({ selectedPokemon, rivalPokemon }) => {
         <CardPokemon pokemon={selectedPokemon} />
       </Grid>
       <Grid item xs={2} textAlign={"center"}>
-        <Button variant="contained" color="success">
+        <Button variant="contained" color="success" onClick={battleHandle}>
           Start Battle
         </Button>
       </Grid>
