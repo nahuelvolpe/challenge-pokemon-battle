@@ -17,7 +17,13 @@ export const ListPokemon = ({ pokemons, setSelectedPokemon }) => {
           >
             <CardActionArea>
               <CardContent>
-                <img src={pokemon.imageUrl} alt={pokemon.name} width="100%" />
+                <div
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
+                  <img src={pokemon.imageUrl} alt={pokemon.name} width="50%" />
+                </div>
                 <Typography variant="h6">{pokemon.name}</Typography>
               </CardContent>
             </CardActionArea>
