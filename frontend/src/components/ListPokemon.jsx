@@ -6,6 +6,13 @@ import {
   Typography,
 } from "@mui/material";
 
+/**
+ * Componente que representa una lista de pokemons en una card cada uno.
+ *
+ * @param {Pokemon[]} pokemons - Pokemon seleccionado por el usuario.
+ * @param {Dispatch<React.SetStateAction<Pokemon>>} setSelectedPokemon - setState para setear el pokemon seleccionado.
+ * @returns {ReactNode} - Componente de React representa una lista de pokemons en una card cada uno.
+ */
 export const ListPokemon = ({ pokemons, setSelectedPokemon }) => {
   return (
     <Grid container spacing={2} mt={1}>

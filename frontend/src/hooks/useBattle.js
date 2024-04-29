@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+/**
+ * Hook utilizado para manejar la lógica de batalla, como también para ejecutar las request
+ * que populan la lista de pokemon y lanzan la batalla.
+ */
 export const useBattle = () => {
   const [pokemons, setPokemons] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);

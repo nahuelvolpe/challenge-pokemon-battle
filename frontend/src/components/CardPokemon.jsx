@@ -16,6 +16,12 @@ const BorderLinearProgress = styled(LinearProgress)(() => ({
   },
 }));
 
+/**
+ * Componente que representa una card de un pokemon con una imagen y sus stats.
+ *
+ * @param {Pokemon} pokemon - Pokemon que se enfrentara en la batalla.
+ * @returns {ReactNode} - Componente de React que representa a una card de un pokemon con una imagen y sus stats.
+ */
 export const CardPokemon = ({ pokemon }) => {
   return (
     <Card>
