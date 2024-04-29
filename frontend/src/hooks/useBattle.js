@@ -13,18 +13,26 @@ export const useBattle = () => {
   const [openNotification, setOpenNotification] = useState(false);
 
   const fetchPokemons = async () => {
-    const response = await axios.get("http://localhost:3000/pokemon");
-    setPokemons(response?.data);
+    try {
+      const response = await axios.get("http://localhost:3000/pokemon");
+      setPokemons(response?.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const battleHandle = async () => {
     if (selectedPokemon && rivalPokemon) {
-      const body = {
-        pokemonSelected: selectedPokemon,
-        pokemonRival: rivalPokemon,
-      };
-      const response = await axios.post("http://localhost:3000/battle", body);
-      setWinnerPokemon(response?.data);
+      try {
+        const body = {
+          pokemonSelected: selectedPokemon,
+          pokemonRival: rivalPokemon,
+        };
+        const response = await axios.post("http://localhost:3000/battle", body);
+        setWinnerPokemon(response?.data);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

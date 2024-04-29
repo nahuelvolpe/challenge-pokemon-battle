@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Box, Collapse, Alert } from "@mui/material";
 
 /**
@@ -9,6 +10,11 @@ import { Box, Collapse, Alert } from "@mui/material";
  * @returns {ReactNode} - Componente de React que representa un stack para informar el pokemon ganador.
  */
 export const NotificationComponent = ({ open, setOpen, winnerPokemon }) => {
+  const notificationMessage = useMemo(() => {
+    if (!winnerPokemon) return null;
+    return `${winnerPokemon.name} wins!`;
+  }, [winnerPokemon]);
+
   return (
     <Box sx={{ width: "100%", mt: 3 }}>
       <Collapse in={open}>
@@ -19,7 +25,7 @@ export const NotificationComponent = ({ open, setOpen, winnerPokemon }) => {
             setOpen(false);
           }}
         >
-          {`${winnerPokemon.name} wins!`}
+          {notificationMessage}
         </Alert>
       </Collapse>
     </Box>

@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 import { ListPokemon } from "../components/ListPokemon";
 import { BattleComponent } from "../components/BattleComponent";
