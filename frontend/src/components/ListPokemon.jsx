@@ -17,9 +17,9 @@ export const ListPokemon = ({ pokemons, setSelectedPokemon }) => {
   return (
     <Grid container spacing={2} mt={1}>
       {pokemons.map((pokemon) => (
-        <Grid item xs key={pokemon.id}>
+        <Grid item xs={12} sm={6} md key={pokemon.id}>
           <Card
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: "pointer", boxShadow: 3 }}
             onClick={() => setSelectedPokemon(pokemon)}
           >
             <CardActionArea>

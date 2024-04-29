@@ -24,7 +24,7 @@ const BorderLinearProgress = styled(LinearProgress)(() => ({
  */
 export const CardPokemon = ({ pokemon }) => {
   return (
-    <Card>
+    <Card sx={{ boxShadow: 3 }}>
       <CardContent>
         <div
           style={{
