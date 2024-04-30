@@ -1,10 +1,5 @@
-import {
-  Grid,
-  Card,
-  CardContent,
-  CardActionArea,
-  Typography,
-} from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { CardPokemon } from "./CardPokemon";
 
 /**
  * Componente que representa una lista de pokemons en una card cada uno.
@@ -18,23 +13,12 @@ export const ListPokemon = ({ pokemons, setSelectedPokemon }) => {
     <Grid container spacing={2} mt={1}>
       {pokemons.map((pokemon) => (
         <Grid item xs={12} sm={6} md key={pokemon.id}>
-          <Card
-            sx={{ cursor: "pointer", boxShadow: 3 }}
-            onClick={() => setSelectedPokemon(pokemon)}
-          >
-            <CardActionArea>
-              <CardContent>
-                <div
-                  style={{
-                    textAlign: "center",
-                  }}
-                >
-                  <img src={pokemon.imageUrl} alt={pokemon.name} width="50%" />
-                </div>
-                <Typography variant="h6">{pokemon.name}</Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
+          <CardPokemon
+            pokemon={pokemon}
+            cardAction={() => {
+              setSelectedPokemon(pokemon);
+            }}
+          />
         </Grid>
       ))}
     </Grid>

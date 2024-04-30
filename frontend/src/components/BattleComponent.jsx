@@ -24,15 +24,15 @@ export const BattleComponent = ({
       alignItems="center"
     >
       <Grid item xs={12} sm={5}>
-        <CardPokemon pokemon={selectedPokemon} />
+        <CardPokemon pokemon={selectedPokemon} stats={true} />
       </Grid>
       <Grid item xs={12} sm={2} textAlign={"center"}>
         <Button variant="contained" color="success" onClick={battleHandle}>
-          Start Battle
+          START BATTLE
         </Button>
       </Grid>
       <Grid item xs={12} sm={5}>
-        <CardPokemon pokemon={rivalPokemon} />
+        <CardPokemon pokemon={rivalPokemon} stats={true} />
       </Grid>
     </Grid>
   );
