@@ -1,6 +1,3 @@
-## Nota importante:
->Hola! quería aclarar que realice la aplicación con las tecnologías y requisitos pedidos, decidí no agregar más de eso para cumplir con los requisitos y no generar ninguna posible confusión. Por ejemplo no he agregado Typescript en la aplicación del frontend, sin embargo si ustedes desean puedo hacer una revisión y agregarlo como también el testing, y cualquier otra librería.
-
 # Battle of Pokemon App
 
 ## Instrucciones
